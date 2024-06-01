@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ShadcnButton(
-                variant: ButtonVariant.outline,
-                size: ButtonSize.sm,
+                variant: ButtonVariant.secondary,
+                size: ButtonSize.defaultSize,
                 onPressed: () => print('Button clicked'),
                 text: 'Click me',
               ),

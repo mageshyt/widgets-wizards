@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_wigets/common/colors.dart';
+import 'package:widgets_wigets/common/sizes.dart';
 
 // Enums for button variants and sizes
 enum ButtonVariant {
@@ -87,49 +89,55 @@ class ShadcnButton extends StatelessWidget {
     switch (variant) {
       case ButtonVariant.defaultVariant:
         return baseStyle.copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          overlayColor:
-              MaterialStateProperty.all<Color>(Colors.blue.withOpacity(0.8)),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(ThemeColors.primary),
+          foregroundColor: MaterialStateProperty.all<Color>(ThemeColors.white),
+          overlayColor: MaterialStateProperty.all<Color>(
+              ThemeColors.primary.withOpacity(0.8)),
         );
       case ButtonVariant.destructive:
         return baseStyle.copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          overlayColor:
-              MaterialStateProperty.all<Color>(Colors.red.withOpacity(0.8)),
+          backgroundColor: MaterialStateProperty.all<Color>(ThemeColors.error),
+          foregroundColor: MaterialStateProperty.all<Color>(ThemeColors.white),
+          overlayColor: MaterialStateProperty.all<Color>(
+              ThemeColors.error.withOpacity(0.8)),
         );
       case ButtonVariant.outline:
         return baseStyle.copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+          backgroundColor: MaterialStateProperty.all<Color>(ThemeColors.white),
+          foregroundColor: MaterialStateProperty.all<Color>(ThemeColors.black),
           side: MaterialStateProperty.all<BorderSide>(
-            const BorderSide(color: Colors.black),
+            const BorderSide(color: ThemeColors.black),
           ),
-          overlayColor:
-              MaterialStateProperty.all<Color>(Colors.grey.withOpacity(0.2)),
+          overlayColor: MaterialStateProperty.all<Color>(
+              ThemeColors.darkGrey.withOpacity(0.2)),
           elevation:
               MaterialStateProperty.all<double>(0), // Set elevation to zero
         );
       case ButtonVariant.secondary:
         return baseStyle.copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          overlayColor:
-              MaterialStateProperty.all<Color>(Colors.grey.withOpacity(0.8)),
+          backgroundColor: MaterialStateProperty.all<Color>(ThemeColors.black),
+          foregroundColor: MaterialStateProperty.all<Color>(ThemeColors.white),
+          overlayColor: MaterialStateProperty.all<Color>(
+              ThemeColors.darkGrey.withOpacity(0.8)),
         );
       case ButtonVariant.ghost:
         return baseStyle.copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(ThemeColors.textPrimary),
+          foregroundColor: MaterialStateProperty.all<Color>(ThemeColors.black),
           elevation: MaterialStateProperty.all<double>(0),
-          overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+          overlayColor:
+              MaterialStateProperty.all<Color>(ThemeColors.textPrimary),
         );
       case ButtonVariant.link:
         return baseStyle.copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-          overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(ThemeColors.textPrimary),
+          foregroundColor:
+              MaterialStateProperty.all<Color>(ThemeColors.primary),
+          overlayColor:
+              MaterialStateProperty.all<Color>(ThemeColors.textPrimary),
         );
       default:
         return baseStyle;
@@ -140,15 +148,19 @@ class ShadcnButton extends StatelessWidget {
   EdgeInsetsGeometry _getPadding(ButtonSize size) {
     switch (size) {
       case ButtonSize.defaultSize:
-        return const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
+        return const EdgeInsets.symmetric(
+            horizontal: Sizes.md, vertical: Sizes.sm);
       case ButtonSize.sm:
-        return const EdgeInsets.symmetric(horizontal: 12, vertical: 6);
+        return const EdgeInsets.symmetric(
+            horizontal: Sizes.md, vertical: Sizes.sm);
       case ButtonSize.lg:
-        return const EdgeInsets.symmetric(horizontal: 20, vertical: 10);
+        return const EdgeInsets.symmetric(
+            horizontal: Sizes.lg, vertical: Sizes.md);
       case ButtonSize.icon:
-        return const EdgeInsets.all(2);
+        return const EdgeInsets.all(Sizes.sm);
       default:
-        return const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
+        return const EdgeInsets.symmetric(
+            horizontal: Sizes.md, vertical: Sizes.sm);
     }
   }
 
@@ -156,15 +168,15 @@ class ShadcnButton extends StatelessWidget {
   double _getFontSize(ButtonSize size) {
     switch (size) {
       case ButtonSize.defaultSize:
-        return 16;
+        return Sizes.md;
       case ButtonSize.sm:
-        return 14;
+        return Sizes.sm;
       case ButtonSize.lg:
-        return 18;
+        return Sizes.lg;
       case ButtonSize.icon:
-        return 16;
+        return Sizes.sm;
       default:
-        return 16;
+        return Sizes.md;
     }
   }
 
