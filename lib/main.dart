@@ -20,16 +20,49 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Quick Alert Example')),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            CustomAlertDialog.showCustomAlert(
-              context: context,
-              alertType: AlertType.info,
-              title: 'Success',
-              text: 'Transaction Completed Successfully!',
-            );
-          },
-          child: Text('Show Alert'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                CustomAlertDialog.showCustomAlert(
+                  context: context,
+                  alertType: AlertType.success,
+                  title: 'Success',
+                  text: 'Transaction Completed Successfully!',
+                );
+              },
+              child: Text('Show Success Alert'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                CustomAlertDialog.showCustomAlert(
+                  context: context,
+                  alertType: AlertType.loading,
+                  title: 'Loading',
+                  text: 'Fetching your data',
+                );
+              },
+              child: Text('Show Loading Alert'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                CustomAlertDialog.showCustomAlert(
+                  context: context,
+                  alertType: AlertType.custom,
+                  title: 'Custom Alert',
+                  text: 'This is a custom alert with a widget',
+                  customAsset: 'lib/images/sasi.jpg',
+                  customWidget: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Enter something',
+                    ),
+                  ),
+                );
+              },
+              child: Text('Show Custom Alert'),
+            ),
+          ],
         ),
       ),
     );

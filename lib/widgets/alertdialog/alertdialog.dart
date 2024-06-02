@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:widgets_wigets/common/colors.dart';
 
-enum AlertType { error, info, warning, success, confirmation }
+enum AlertType { error, info, warning, success, confirmation, loading, custom }
 
 class CustomAlertDialog {
   static void showCustomAlert({
@@ -10,6 +11,11 @@ class CustomAlertDialog {
     required AlertType alertType,
     String? title,
     String? text,
+    String? confirmBtnText,
+    String? cancelBtnText,
+    Color? confirmBtnColor,
+    String? customAsset,
+    Widget? customWidget,
   }) {
     QuickAlertType type;
     String alertTitle = title ?? '';
@@ -35,6 +41,14 @@ class CustomAlertDialog {
         type = QuickAlertType.confirm;
         alertTitle = title ?? 'Confirmation';
         break;
+      case AlertType.loading:
+        type = QuickAlertType.loading;
+        alertTitle = title ?? 'Loading';
+        break;
+      case AlertType.custom:
+        type = QuickAlertType.custom;
+        alertTitle = title ?? 'Custom';
+        break;
       default:
         type = QuickAlertType.error;
         alertTitle = title ?? 'Error';
@@ -43,8 +57,13 @@ class CustomAlertDialog {
     QuickAlert.show(
       context: context,
       type: type,
-      title: alertTitle,
+      title: alertTitle.isNotEmpty ? alertTitle : null,
       text: text,
+      confirmBtnText: confirmBtnText ?? "Ok",
+      cancelBtnText: cancelBtnText ?? "Cancel",
+      confirmBtnColor: confirmBtnColor ?? ThemeColors.primary,
+      customAsset: customAsset,
+      widget: customWidget,
       onConfirmBtnTap: () {
         Navigator.of(context).pop(); // Close the alert
       },
