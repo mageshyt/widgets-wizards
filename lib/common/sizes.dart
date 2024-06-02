@@ -13,6 +13,11 @@ class Sizes {
   static const double iconLg = 32.0;
   static const double iconXl = 48.0;
 
+  //Avatar sizes
+  static const double avatarSm = 42.0;
+  static const double avatarMd = 60.0;
+  static const double avatarLg = 80.0;
+
   // Font sizes
   static const double fontSizesm = 14.0;
   static const double fontSizeMd = 16.0;

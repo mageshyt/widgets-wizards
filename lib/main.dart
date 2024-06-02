@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_wigets/widgets/avatar/avatar.dart';
 import 'package:widgets_wigets/widgets/button/button.dart';
 
 void main() {
@@ -19,16 +20,15 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Flutter Component Library'),
         ),
-        body: Center(
+        body: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ShadcnButton(
-                variant: ButtonVariant.secondary,
-                size: ButtonSize.defaultSize,
-                onPressed: () => print('Button clicked'),
-                text: 'Click me',
-              ),
+              CustomAvatar(
+                path: "lib/images/sasi.jpg",
+                size: AvatarSizes.lg,
+                pathType: AvatarPathType.asset,
+              )
             ],
           ),
         ),
