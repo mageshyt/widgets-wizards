@@ -69,6 +69,11 @@ class Sizes {
   static const double cardRadiusXs = 6.0;
   static const double cardElevation = 2.0;
 
+  //Checkbox sizes
+  static const double checkboxSm = 1.0;
+  static const double checkboxMd = 1.25;
+  static const double checkboxLg = 1.5;
+
   // Image carousel height
   static const double imageCarouselHeight = 200.0;
 
