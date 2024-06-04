@@ -1,23 +1,27 @@
 import 'dart:io';
 import 'dart:typed_data'; // Import necessary for Uint8List
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:widgets_wigets/common/sizes.dart';
 
 enum AvatarSizes { sm, md, lg }
 
 enum AvatarPathType { asset, network, memory, file }
 
-class CustomAvatar extends StatelessWidget {
+class Avatar extends StatelessWidget {
   final String path;
   final AvatarSizes size;
   final AvatarPathType pathType;
+  final String? fallback;
 
-  const CustomAvatar({
+  const Avatar({
     Key? key,
     required this.path,
     required this.pathType,
     this.size = AvatarSizes.md,
+    this.fallback,
   }) : super(key: key);
 
   @override
@@ -38,41 +42,48 @@ class CustomAvatar extends StatelessWidget {
         break;
     }
 
-    Widget avatar;
+    return path.isEmpty && fallback!.isNotEmpty
+        ? CircleAvatar(
+            backgroundColor: Colors.grey[900],
+            radius: avatarsize,
+            child: Text(
+              fallback!.substring(0, 2).toUpperCase(),
+              style: TextStyle(
+                color: Colors.grey[300],
+                fontSize: 16,
+              ),
+            ),
+          )
+        : _buildAvatar(path, pathType, avatarsize);
+  }
+
+  _buildAvatar(String path, AvatarPathType pathType, double avatarsize) {
     switch (pathType) {
       case AvatarPathType.asset:
-        avatar = CircleAvatar(
-          backgroundColor: const Color.fromARGB(255, 206, 205, 205),
+        return CircleAvatar(
           radius: avatarsize,
-          backgroundImage: AssetImage(path),
+          backgroundImage: AssetImage(
+            path,
+          ),
         );
-        break;
       case AvatarPathType.network:
-        avatar = CircleAvatar(
-          backgroundColor: Colors.grey[300],
+        return CircleAvatar(
           radius: avatarsize,
-          backgroundImage: NetworkImage(path),
+          backgroundImage: CachedNetworkImageProvider(
+            path,
+          ),
         );
-        break;
       case AvatarPathType.memory:
-        // For memory path, path should be Uint8List representing image data
-        // Example: Uint8List bytes = await someFunctionToLoadImageAsBytes();
-        // Then pass 'bytes' to the path parameter
-        avatar = CircleAvatar(
-          backgroundColor: Colors.grey[300],
+        return CircleAvatar(
           radius: avatarsize,
-          backgroundImage: MemoryImage(Uint8List.fromList(path.codeUnits)),
+          backgroundImage:
+              MemoryImage(Uint8List.fromList(File(path).readAsBytesSync())),
         );
-        break;
       case AvatarPathType.file:
-        avatar = CircleAvatar(
-          backgroundColor: Colors.grey[300],
+        return CircleAvatar(
           radius: avatarsize,
           backgroundImage: FileImage(File(path)),
         );
-        break;
     }
-
-    return avatar;
   }
 }
