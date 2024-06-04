@@ -3,19 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:widgets_wigets/common/sizes.dart';
 
+enum CardType { defaultCard, outlinedCard }
+
 class CustomCard extends StatelessWidget {
   final CardHeader? header;
   final CardContent content;
   final CardFooter? footer;
-  const CustomCard(
-      {super.key,
-      required this.header,
-      required this.content,
-      required this.footer});
+  final CardType type;
+  const CustomCard({
+    super.key,
+    required this.header,
+    required this.content,
+    required this.footer,
+    this.type = CardType.defaultCard,
+  });
 
   @override
   Widget build(BuildContext context) {
+    // Merge custom style with variant style
+    RoundedRectangleBorder _getCardStyle(BuildContext context, CardType type) {
+      switch (type) {
+        case CardType.outlinedCard:
+          return RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Sizes.borderRadiusMd),
+              side: BorderSide(width: 2));
+        case CardType.defaultCard:
+          return RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Sizes.borderRadiusMd),
+            side: BorderSide(width: 0),
+          );
+      }
+    }
+
     return Card(
+      shape: _getCardStyle(context, type),
       child: Container(
         padding: const EdgeInsets.all(Sizes.defaultSpace),
         child: Column(
