@@ -1,22 +1,25 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
 import 'package:widgets_wigets/common/sizes.dart';
 
 enum CardType { defaultCard, outlinedCard }
 
 class CustomCard extends StatelessWidget {
+  Color? color;
   final CardHeader? header;
   final CardContent content;
   final CardFooter? footer;
   final CardType type;
-  const CustomCard({
-    super.key,
+  CustomCard({
+    Key? key,
+    this.color,
     required this.header,
     required this.content,
     required this.footer,
     this.type = CardType.defaultCard,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class CustomCard extends StatelessWidget {
         case CardType.outlinedCard:
           return RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(Sizes.borderRadiusMd),
-              side: BorderSide(width: 2));
+              side: BorderSide(width: 2, color: color ?? Colors.black));
         case CardType.defaultCard:
           return RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(Sizes.borderRadiusMd),
@@ -36,15 +39,14 @@ class CustomCard extends StatelessWidget {
     }
 
     return Card(
+      color: type == CardType.defaultCard ? color : Colors.white,
       shape: _getCardStyle(context, type),
       child: Container(
         padding: const EdgeInsets.all(Sizes.defaultSpace),
         child: Column(
           children: [
             if (header != null) header!,
-            SizedBox(height: Sizes.defaultSpace),
             content,
-            SizedBox(height: Sizes.defaultSpace),
             if (footer != null) footer!,
           ],
         ),
@@ -54,12 +56,12 @@ class CustomCard extends StatelessWidget {
 }
 
 class CardHeader extends StatelessWidget {
-  final String title;
+  final String? title;
   final String? subtitle;
   Widget? customWidget;
   CardHeader({
     Key? key,
-    required this.title,
+    this.title,
     this.subtitle,
     this.customWidget,
   }) : super(key: key);
@@ -68,11 +70,12 @@ class CardHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title,
-            style: const TextStyle(
-              fontSize: Sizes.fontSizeLg,
-              fontWeight: FontWeight.bold,
-            )),
+        if (title != null)
+          Text(title!,
+              style: const TextStyle(
+                fontSize: Sizes.fontSizeLg,
+                fontWeight: FontWeight.bold,
+              )),
         if (subtitle != null)
           Text(
             subtitle!,
