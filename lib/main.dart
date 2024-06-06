@@ -11,8 +11,10 @@ import 'package:widgets_wigets/widgets/calender/calender.dart';
 import 'package:widgets_wigets/widgets/card/cards.dart';
 import 'package:widgets_wigets/widgets/carousal/carousal.dart';
 import 'package:widgets_wigets/widgets/checkbox/checkbox.dart';
+import 'package:widgets_wigets/widgets/loader/loader.dart';
 import 'package:widgets_wigets/widgets/otpfield/otpfield.dart';
 import 'package:widgets_wigets/widgets/pagination/paginatoin.dart';
+import 'package:widgets_wigets/widgets/skelton/skeleton.dart';
 import 'package:widgets_wigets/widgets/snackbar/snackbar.dart';
 import 'package:widgets_wigets/widgets/toast/toast.dart';
 
@@ -116,61 +118,61 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            CheckBoxz(
-              text: 'Terms and condiotions',
-              isSelected: false,
-              size: CheckBoxSize.md,
-            ),
-            Container(
-              margin: const EdgeInsets.all(16),
-              child: CustomCard(
-                  // color: Colors.black12,
-                  type: CardType.outlinedCard,
-                  header: CardHeader(
-                      // title: 'Sign in',
-                      // subtitle: 'Sign in to continue',
-                      // customWidget: Image.network(
-                      //   'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhcnN8ZW58MHx8MHx8fDA%3D',
-                      //   width: double.infinity,
-                      //   fit: BoxFit.cover,
-                      //   // width: double.infinity,
-                      // ),
 
-                      customWidget: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      'https://c.files.bbci.co.uk/F382/production/_123883326_852a3a31-69d7-4849-81c7-8087bf630251.jpg',
-                      fit: BoxFit.cover,
+            Skeleton(
+              enabled: true,
+              child: Container(
+                margin: const EdgeInsets.all(16),
+                child: CustomCard(
+                    // color: Colors.black12,
+                    type: CardType.outlinedCard,
+                    header: CardHeader(
+                        // title: 'Sign in',
+                        // subtitle: 'Sign in to continue',
+                        // customWidget: Image.network(
+                        //   'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhcnN8ZW58MHx8MHx8fDA%3D',
+                        //   width: double.infinity,
+                        //   fit: BoxFit.cover,
+                        //   // width: double.infinity,
+                        // ),
+
+                        customWidget: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        'https://c.files.bbci.co.uk/F382/production/_123883326_852a3a31-69d7-4849-81c7-8087bf630251.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    )),
+                    content: const CardContent(
+                      children: [
+                        // TextField(
+                        //   decoration: InputDecoration(
+                        //       hintText: 'Enter your email',
+                        //       labelText: 'Email',
+                        //       border: OutlineInputBorder()),
+                        // ),
+                        // SizedBox(height: 20),
+                        // TextField(
+                        //   decoration: InputDecoration(
+                        //       hintText: 'Enter your password',
+                        //       labelText: 'Password',
+                        //       border: OutlineInputBorder()),
+                        // ),
+                      ],
                     ),
-                  )),
-                  content: const CardContent(
-                    children: [
-                      // TextField(
-                      //   decoration: InputDecoration(
-                      //       hintText: 'Enter your email',
-                      //       labelText: 'Email',
-                      //       border: OutlineInputBorder()),
-                      // ),
-                      // SizedBox(height: 20),
-                      // TextField(
-                      //   decoration: InputDecoration(
-                      //       hintText: 'Enter your password',
-                      //       labelText: 'Password',
-                      //       border: OutlineInputBorder()),
-                      // ),
-                    ],
-                  ),
-                  footer: CardFooter(
-                      customWidget: SizedBox(
-                    width: double.infinity,
-                    child: ShadcnButton(
-                        text: 'Sign In',
-                        onPressed: () => snackbar.showSnackbar(
-                            context: context,
-                            title: 'Heyy!!!',
-                            message: 'laskdflkj sdfkjbsd sldajkb sdafjb sdf,jb',
-                            contentType: ContentType.success)),
-                  ))),
+                    footer: CardFooter(
+                        customWidget: SizedBox(
+                      width: double.infinity,
+                      child: ShadcnButton(
+                          text: 'Sign In',
+                          onPressed: () => snackbar.showSnackbar(
+                              context: context,
+                              title: 'Heyy!!!',
+                              message:
+                                  'laskdflkj sdfkjbsd sldajkb sdafjb sdf,jb',
+                              contentType: ContentType.success)),
+                    ))),
+              ),
             ),
             // Container(
             //   width: 300,
@@ -183,7 +185,7 @@ class HomeScreen extends StatelessWidget {
               // margin: EdgeInsets.all(20),
               width: double.infinity,
               height: 200,
-              child: MyHomePage(
+              child: CustomPagination(
                 numPages: 10,
                 pageVisible: 5,
                 onPageChanged: (page) {
@@ -193,6 +195,10 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(
               height: 20,
+            ),
+            Loader(size: 20, color: Colors.black),
+            const SizedBox(
+              height: 50,
             ),
           ],
         ),
