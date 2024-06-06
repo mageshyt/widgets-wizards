@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sliding_toast/flutter_sliding_toast.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:widgets_wigets/widgets/alertdialog/alertdialog.dart';
@@ -11,6 +12,7 @@ import 'package:widgets_wigets/widgets/carousal/carousal.dart';
 import 'package:widgets_wigets/widgets/checkbox/checkbox.dart';
 import 'package:widgets_wigets/widgets/otpfield/otpfield.dart';
 import 'package:widgets_wigets/widgets/pagination/paginatoin.dart';
+import 'package:widgets_wigets/widgets/toast/toast.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,18 +61,56 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.all(8),
                   width: 180,
-                  child: const ShadcnButton(
-                    text: 'Default',
+                  child: ShadcnButton(
+                    text: 'Solid ',
+                    onPressed: () => toast.showSuccessToast(
+                      context: context,
+                      title: 'Logined Successfully',
+                    ),
                   ),
                 ),
                 Container(
-                  width: 180,
-                  margin: const EdgeInsets.all(8),
-                  child: const ShadcnButton(
-                    variant: ButtonVariant.outline,
-                    text: 'Default',
-                  ),
-                )
+                    width: 180,
+                    margin: const EdgeInsets.all(8),
+                    child: ShadcnButton(
+                      variant: ButtonVariant.outline,
+                      text: 'Default',
+                      onPressed: () => toast.showCustomToast(
+                        context: context,
+                        customWidget: CustomCard(
+                            header: CardHeader(
+                              title: 'LOgin',
+                            ),
+                            content: CardContent(children: [
+                              TextField(
+                                decoration: const InputDecoration(
+                                    hintText: 'Enter your email',
+                                    labelText: 'Email',
+                                    border: OutlineInputBorder()),
+                              ),
+                              const SizedBox(height: 20),
+                              TextField(
+                                decoration: const InputDecoration(
+                                    hintText: 'Enter your password',
+                                    labelText: 'Password',
+                                    border: OutlineInputBorder()),
+                              ),
+                            ]),
+                            footer: CardFooter(
+                                customWidget: SizedBox(
+                              width: double.infinity,
+                              child: ShadcnButton(
+                                text: 'Sign In',
+                                onPressed: () => toast.showErrorToast(
+                                  context: context,
+                                  title: 'Something Went Wrong',
+                                  toastAlignment: Alignment.bottomCenter,
+                                ),
+                              ),
+                            ))),
+                        bgcolor: Colors.black12,
+                      ),
+                    )),
               ],
             ),
             const SizedBox(height: 20),
@@ -123,6 +163,11 @@ class HomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ShadcnButton(
                       text: 'Sign In',
+                      onPressed: () => toast.showErrorToast(
+                        context: context,
+                        title: 'Something Went Wrong',
+                        toastAlignment: Alignment.bottomCenter,
+                      ),
                     ),
                   ))),
             ),
@@ -144,6 +189,9 @@ class HomeScreen extends StatelessWidget {
                   print('page changed' + page.toString());
                 },
               ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),
