@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pagination_flutter/pagination.dart';
 
-class MyHomePage extends StatefulWidget {
+class CustomPagination extends StatefulWidget {
   final int numPages;
   final int pageVisible;
   final Function onPageChanged;
-  const MyHomePage({
+  const CustomPagination({
     super.key,
     required this.numPages,
     required this.pageVisible,
@@ -13,10 +13,10 @@ class MyHomePage extends StatefulWidget {
   });
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CustomPagination> createState() => _CustomPaginationState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CustomPaginationState extends State<CustomPagination> {
   int selectedPage = 1;
 
   setSelectedPage(int index) {
