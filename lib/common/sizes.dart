@@ -14,9 +14,9 @@ class Sizes {
   static const double iconXl = 48.0;
 
   //Avatar sizes
-  static const double avatarSm = 42.0;
-  static const double avatarMd = 60.0;
-  static const double avatarLg = 80.0;
+  static const double avatarSm = 24.0;
+  static const double avatarMd = 32.0;
+  static const double avatarLg = 48.0;
 
   // Font sizes
   static const double fontSizesm = 14.0;
@@ -68,6 +68,11 @@ class Sizes {
   static const double cardRadiusSm = 10.0;
   static const double cardRadiusXs = 6.0;
   static const double cardElevation = 2.0;
+
+  //Checkbox sizes
+  static const double checkboxSm = 1.0;
+  static const double checkboxMd = 1.25;
+  static const double checkboxLg = 1.5;
 
   // Image carousel height
   static const double imageCarouselHeight = 200.0;

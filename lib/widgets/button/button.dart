@@ -30,8 +30,8 @@ class ShadcnButton extends StatelessWidget {
 
   const ShadcnButton({
     Key? key,
-    required this.variant,
-    required this.size,
+    this.variant = ButtonVariant.defaultVariant,
+    this.size = ButtonSize.defaultSize,
     this.icon,
     this.label,
     this.text,
@@ -76,13 +76,12 @@ class ShadcnButton extends StatelessWidget {
     final baseStyle = ButtonStyle(
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(Sizes.borderRadiusSm),
         ),
       ),
       textStyle: MaterialStateProperty.all<TextStyle>(
           TextStyle(fontSize: _getFontSize(size))), // Use theme's text style
       padding: MaterialStateProperty.all<EdgeInsetsGeometry>(_getPadding(size)),
-      elevation: MaterialStateProperty.all<double>(2),
     );
 
     // Apply variant-specific styles
@@ -114,6 +113,7 @@ class ShadcnButton extends StatelessWidget {
           elevation:
               MaterialStateProperty.all<double>(0), // Set elevation to zero
         );
+
       case ButtonVariant.secondary:
         return baseStyle.copyWith(
           backgroundColor: MaterialStateProperty.all<Color>(ThemeColors.black),
