@@ -7,6 +7,14 @@ import 'package:shimmer/shimmer.dart';
 import 'package:widgets_wigets/widgets/alertdialog/alertdialog.dart';
 import 'package:widgets_wigets/widgets/badge/badge.dart';
 import 'package:widgets_wigets/widgets/calender/calender.dart';
+import 'package:widgets_wigets/widgets/card/cards.dart';
+import 'package:widgets_wigets/widgets/carousal/carousal.dart';
+import 'package:widgets_wigets/widgets/checkbox/checkbox.dart';
+import 'package:widgets_wigets/widgets/otpfield/otpfield.dart';
+import 'package:widgets_wigets/widgets/pagination/paginatoin.dart';
+import 'package:widgets_wigets/widgets/snackbar/snackbar.dart';
+import 'package:widgets_wigets/widgets/switch/switch.dart';
+import 'package:widgets_wigets/widgets/toast/toast.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,10 +40,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Widgets')),
-      body: const Center(
-        child: CustomBadge(
-          text: "Hello",
-          variant: BadgeVariant.outline,
+      body: Center(
+        child: CustomSwitch(
+          value: _switchValue,
+          onChanged: (value) {
+            setState(() {
+              _switchValue = value;
+            });
+          },
+          activeColor: Colors.green,
+          inactiveColor: Colors.red,
+          activeText: 'ON',
+          inactiveText: 'OFF',
+          showOnOff: true,
         ),
       ),
     );
