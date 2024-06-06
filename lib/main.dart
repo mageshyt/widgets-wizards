@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sliding_toast/flutter_sliding_toast.dart';
@@ -12,6 +13,7 @@ import 'package:widgets_wigets/widgets/carousal/carousal.dart';
 import 'package:widgets_wigets/widgets/checkbox/checkbox.dart';
 import 'package:widgets_wigets/widgets/otpfield/otpfield.dart';
 import 'package:widgets_wigets/widgets/pagination/paginatoin.dart';
+import 'package:widgets_wigets/widgets/snackbar/snackbar.dart';
 import 'package:widgets_wigets/widgets/toast/toast.dart';
 
 void main() {
@@ -81,16 +83,16 @@ class HomeScreen extends StatelessWidget {
                             header: CardHeader(
                               title: 'LOgin',
                             ),
-                            content: CardContent(children: [
+                            content: const CardContent(children: [
                               TextField(
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                     hintText: 'Enter your email',
                                     labelText: 'Email',
                                     border: OutlineInputBorder()),
                               ),
-                              const SizedBox(height: 20),
+                              SizedBox(height: 20),
                               TextField(
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                     hintText: 'Enter your password',
                                     labelText: 'Password',
                                     border: OutlineInputBorder()),
@@ -162,13 +164,12 @@ class HomeScreen extends StatelessWidget {
                       customWidget: SizedBox(
                     width: double.infinity,
                     child: ShadcnButton(
-                      text: 'Sign In',
-                      onPressed: () => toast.showErrorToast(
-                        context: context,
-                        title: 'Something Went Wrong',
-                        toastAlignment: Alignment.bottomCenter,
-                      ),
-                    ),
+                        text: 'Sign In',
+                        onPressed: () => snackbar.showSnackbar(
+                            context: context,
+                            title: 'Heyy!!!',
+                            message: 'laskdflkj sdfkjbsd sldajkb sdafjb sdf,jb',
+                            contentType: ContentType.success)),
                   ))),
             ),
             // Container(
